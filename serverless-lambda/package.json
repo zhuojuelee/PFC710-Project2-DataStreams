@@ -1,0 +1,25 @@
+{
+  "name": "serverless-lambda",
+  "version": "1.0.0",
+  "description": "Serverless HTTP server (AWS Lambda)",
+  "type": "module",
+  "main": "index.js",
+  "license": "ISC",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "ENV=dev nodemon index.js",
+    "zip": "zip -r server_lambda.zip ./"
+  },
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.848.0",
+    "@aws-sdk/lib-dynamodb": "^3.850.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10",
+    "serverless-http": "^3.2.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": "22"
+  }
+}
