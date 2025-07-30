@@ -37,8 +37,8 @@ app.get('/podData', async (req, res) => {
     ExpressionAttributeValues: {
       ":pk": projectId
     },
-    ScanIndexForward: true,
-    Limit: 100 
+    ScanIndexForward: false,
+    Limit: 60
   }
 
   try {
@@ -51,7 +51,7 @@ app.get('/podData', async (req, res) => {
       timestamp: data['sk'].split('#')[1], // Format: todoApp#1753811495
       podData: JSON.parse(data['podData']),
     }))
-    data = { data: formattedData };
+    data = { data: formattedData.slice(-60).reverse() };
     res.status(200).send(data);
   } catch (e) {
     data = { error: `Failed to get data: ${e.message}`, data: [] };

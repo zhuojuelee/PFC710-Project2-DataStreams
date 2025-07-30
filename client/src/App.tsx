@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from "jotai";
 import PodChart from "./components/PodChart";
-import RefetchButton from "./components/RefetchButton";
+import Controls from "./components/Controls";
 
 function App() {
   const queryClient = new QueryClient();
@@ -14,7 +14,7 @@ function App() {
             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight text-balance">
               POD Statistics
             </h1>
-            <RefetchButton />
+            <Controls />
           </div>
           <div className="grid grid-cols-2 grid-rows-2">
             <PodChart statType="cpu_usage_cores" />

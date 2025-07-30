@@ -16,7 +16,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
 
 const chartConfig = {
   desktop: {
@@ -75,6 +75,8 @@ function PodChart(props: PodChart) {
     }
   }, [statType]);
 
+  console.log("xx", podStats.length);
+
   return (
     <div className="my-5">
       <Card className="w-[600px] w-[800px]">
@@ -100,6 +102,7 @@ function PodChart(props: PodChart) {
                 tickMargin={8}
                 tickFormatter={(value) => formatTimestampToTime(value)}
               />
+              <YAxis />
               <ChartTooltip
                 cursor={false}
                 content={
@@ -110,6 +113,7 @@ function PodChart(props: PodChart) {
                 }
               />
               <Line
+                isAnimationActive={false}
                 dataKey={statType}
                 type="linear"
                 stroke="var(--color-desktop)"

@@ -1,6 +1,7 @@
 node_modules
 dist
 server_lambda.zip
+kinesis_lambda.zip
 
 venv
 .env

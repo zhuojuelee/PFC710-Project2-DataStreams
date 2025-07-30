@@ -1,6 +1,8 @@
 import { atomWithSuspenseQuery } from "jotai-tanstack-query";
+import livefeedAtom from "../livefeedAtom";
 
-const dataAtom = atomWithSuspenseQuery(() => {
+const dataAtom = atomWithSuspenseQuery((get) => {
+  const livefeedEnabled = get(livefeedAtom);
   return {
     queryKey: ["podData"],
     queryFn: async () => {
@@ -20,6 +22,7 @@ const dataAtom = atomWithSuspenseQuery(() => {
         data: data.data,
       };
     },
+    ...(livefeedEnabled && { refetchInterval: 2000 }),
   };
 });
 
