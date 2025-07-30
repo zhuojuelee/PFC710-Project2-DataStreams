@@ -29,6 +29,8 @@ Go into the client root `cd client`:
 
 ### Generating data for the Kinesis Stream
 
+Make sure AWS credentials are setup correctly
+
 Go into the kinesis stream root `cd kinesis-stream`:
 
 - `python3 -m venv venv`
@@ -37,6 +39,8 @@ Go into the kinesis stream root `cd kinesis-stream`:
 - `python kinesis-stream.py`
 
 ### Serverless Lambda (ExpressJS)
+
+Make sure AWS credentials are setup correctly
 
 Go into the server root `cd serverless-lambda`
 
