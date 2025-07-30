@@ -64,6 +64,10 @@ def lambda_handler(event, context):
             )
         except:
             print('Failed to put item into DynamoDB')
+            return {
+                'statusCode': 500,
+                'body': 'Failed to put item into DynamoDB'
+            }
 
     logging.info(MESSAGES['SUCCESS'])
     return {
