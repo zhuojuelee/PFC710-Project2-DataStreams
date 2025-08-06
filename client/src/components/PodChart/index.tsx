@@ -35,6 +35,26 @@ const formatTimestampToTime = (seconds: number) => {
   return `${hours}:${minutes}:${secs}`;
 };
 
+type CardMeta = { title: string; description: string };
+const CARD_META_DATA: Record<StatType, CardMeta> = {
+  cpu_usage_cores: {
+    title: "CPU Usage Cores",
+    description: "The amount of CPU cores used as a percentage",
+  },
+  memory_usage_mb: {
+    title: "Memory Usage (MB)",
+    description: "The amount of memory used in megabytes",
+  },
+  network_rx_bytes: {
+    title: "Network TX (bytes)",
+    description: "The amount of traffic transmitted in bytes",
+  },
+  network_tx_bytes: {
+    title: "Network RX (bytes)",
+    description: "The amount of traffic received in bytes",
+  },
+};
+
 interface PodChart {
   statType: StatType;
 }
@@ -46,33 +66,14 @@ function PodChart(props: PodChart) {
   const podStats = usePodData(statType, podData.data);
 
   const cardMetaData = useMemo(() => {
-    switch (statType) {
-      case "cpu_usage_cores":
-        return {
-          title: "CPU Usage Cores",
-          description: "The amount of CPU cores used as a percentage",
-        };
-      case "memory_usage_mb":
-        return {
-          title: "Memory Usage (MB)",
-          description: "The amount of memory used in megabytes",
-        };
-      case "network_rx_bytes":
-        return {
-          title: "Network RX (bytes)",
-          description: "The amount of traffic received in bytes",
-        };
-      case "network_tx_bytes":
-        return {
-          title: "Network TX (bytes)",
-          description: "The amount of traffic transmitted in bytes",
-        };
-      default:
-        return {
-          title: "Unknown Statistic",
-          description: "None",
-        };
-    }
+    const meta = CARD_META_DATA[statType];
+
+    return (
+      meta || {
+        title: "Unknown Statistic",
+        description: "None",
+      }
+    );
   }, [statType]);
 
   console.log("xx", podStats.length);
